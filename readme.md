@@ -3,7 +3,7 @@ This simple bot controls your followers and followings in Instagram.
 If he finds out that someone does not follow you back, he tells you. 
 You can subscribe to notifications, so he will check it automatically once a day.
 
-###Languages
+### Languages
 * English
 * Russian
 
