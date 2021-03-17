@@ -5,11 +5,13 @@ from telegram.ext import Updater
 
 from instagram_unfollower.bot import BotController
 from instagram_unfollower.instagram import UnfollowersInspector
+from instagram_unfollower.localizer import Localizer
 from instagram_unfollower.storage import UnfollowersStorage
 
 api = InstagramAPI(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'])
 unfollowers_inspector = UnfollowersInspector(api)
 unfollowers_storage = UnfollowersStorage(os.environ['SQL_URL'])
+localizer = Localizer(storage=unfollowers_storage, languages=('ru',))
 
 updater = Updater(token=os.environ['TELEGRAM_BOT_TOKEN'])
 
@@ -20,6 +22,7 @@ controller = BotController(
     unfollowers_storage=unfollowers_storage,
     unfollowers_inspector=unfollowers_inspector,
     notification_timeout=day,
+    localizer=localizer
 )
 
 

@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-03-17 19:37+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: instagram_unfollower/bot.py:50
+msgid ""
+"Hello! 🙋‍♂️\n"
+"\n"
+"Tell me your instagram username!\n"
+"\n"
+"Commands:\n"
+"/unfollowers\n"
+"/start_notifying\n"
+msgstr ""
+
+#: instagram_unfollower/bot.py:66
+msgid "Given Instagram account doesn't exist: {}"
+msgstr ""
+
+#: instagram_unfollower/bot.py:85 instagram_unfollower/bot.py:145
+msgid ""
+"New unfollowers: {}\n"
+msgstr ""
+
+#: instagram_unfollower/bot.py:108
+msgid ""
+"All unfollowers: {}\n"
+msgstr ""
+
+#: instagram_unfollower/bot.py:186
+msgid ""
+"Showing only {} first\n"
+msgstr ""
+
+#: instagram_unfollower/bot.py:196
+msgid "First write me your instagram username"
+msgstr ""
+
+#: instagram_unfollower/bot.py:197
+msgid "Ok!"
+msgstr ""
+
+#: instagram_unfollower/bot.py:200
+msgid "Show old unfollowers"
+msgstr ""
+
