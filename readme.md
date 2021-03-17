@@ -1,21 +1,23 @@
-MIT License
+# Instagram unfollowers bot
+This simple bot controls your followers and followings in Instagram.
+If he finds out that someone does not follow you back, he tells you. 
+You can subscribe to notifications, so he will check it automatically once a day.
 
-Copyright (c) 2021 Yuri Zabegaev
+###Languages
+* English
+* Russian
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## Install with docker-compose
+To run this you must have an Instagram account for bot and telegram bot
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+You need to set there env-variables:
+* `VOLUME_HOST_PATH` - where to store sqlite database
+* `TELEGRAM_BOT_TOKEN` - get it from @botfather in telegram
+* `INSTAGRAM_USERNAME` - username of Instagram account your bot will use
+* `INSTAGRAM_PASSWORD` - password of Instagram account your bot will use
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Set variables and go:
+
+`> docker-compose up -d`
+
+Feel free to contribute!
