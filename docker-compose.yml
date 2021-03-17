@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  instagram_unfollower:
+    restart: always
+    build: .
+    container_name: instagram_unfollower
+    volumes:
+      - $VOLUME_HOST_PATH:/data:rw
+    environment:
+      - SQL_URL=sqlite:///data/unfollowers_database.sqlite
+      - TELEGRAM_BOT_TOKEN
+      - INSTAGRAM_USERNAME
+      - INSTAGRAM_PASSWORD

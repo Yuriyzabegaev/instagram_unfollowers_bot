@@ -20,7 +20,7 @@ class UnfollowersInspector:
             raise RuntimeError('Instagram API failed')
 
     def inspect(self, instagram_id: int):
-        self.api.login(force=True)
+        self.api.login()
 
         time.sleep(REQUEST_SLEEP_TIME)
         followers = self.api.getTotalFollowers(usernameId=instagram_id)

@@ -1,4 +1,5 @@
 import os
+import logging
 
 from InstagramAPI import InstagramAPI
 from telegram.ext import Updater
@@ -27,6 +28,9 @@ controller = BotController(
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s - %(message)s')
+    logging.getLogger('requests').setLevel(logging.WARNING)
+
     dp = updater.dispatcher
     controller.initialize_dispatcher(dp)
 

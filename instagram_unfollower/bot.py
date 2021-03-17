@@ -1,6 +1,7 @@
 import itertools
 import logging
 import time
+import traceback
 
 from telegram import ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackQueryHandler
@@ -8,7 +9,7 @@ from telegram.ext import CommandHandler, MessageHandler, Filters, CallbackQueryH
 from instagram_unfollower.instagram import UnfollowersInspector
 from instagram_unfollower.storage import UnfollowersStorage
 
-logger = logging.getLogger('instagram_unsubscriber.controller')
+logger = logging.getLogger('instagram_unfollower.controller')
 
 
 def typing_text(func):
@@ -17,6 +18,13 @@ def typing_text(func):
         func(self, update, context)
 
     return closure
+
+
+def error_callback(update, context):
+    if update is not None:
+        update.effective_message.reply_text(str(context.error))
+        update.effective_message.reply_text(traceback.format_exc())
+    raise context.error
 
 
 class BotController:
@@ -41,6 +49,8 @@ class BotController:
 
         dispatcher.add_handler(CommandHandler('start_notifying', self.start_notifying))
         dispatcher.add_handler(CommandHandler('stop_notifying', self.stop_notifying))
+
+        dispatcher.add_error_handler(error_callback)
 
     '''BOT COMMANDS'''
 
@@ -154,6 +164,17 @@ Commands:
     def run_notification(self):
         t_start = time.time()
 
+        try:
+            self._make_notifications()
+        except Exception as e:
+            logger.exception(e)
+
+        delta_t = time.time() - t_start
+        sleep_time = max(self.notification_timeout - delta_t, HOUR)
+        logger.info(f'Notifier sleeps {sleep_time} seconds')
+        time.sleep(sleep_time)
+
+    def _make_notifications(self):
         telegram_ids = self.unfollowers_storage.get_notified_telegram_ids()
         for telegram_id in telegram_ids:
             _ = self.localizer.get_locale(telegram_id)
@@ -182,11 +203,6 @@ Commands:
                 time.sleep(NOTIFICATION_SLEEP_TIME_BETWEEN_USERS)
             else:
                 logger.info(f'Id {telegram_id} has 0 new unfollowers')
-
-        delta_t = time.time() - t_start
-        sleep_time = max(self.notification_timeout - delta_t, HOUR)
-        logger.info(f'Notifier sleeps {sleep_time} seconds')
-        time.sleep(sleep_time)
 
     def _get_new_unfollowers(self, telegram_id, instagram_id):
         known_unfollower_ids = self.unfollowers_storage.get_known_unfollowers(telegram_id)
